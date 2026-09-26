@@ -1,0 +1,471 @@
+{% load static %}
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+```
+<meta
+  name="description"
+  content="Adewale Oluwatoba — Web Developer building modern, responsive and high-performing websites."
+/>
+<meta name="author" content="Adewale Oluwatoba" />
+
+<title>
+  {% block title %}Adewale Oluwatoba | Web Developer{% endblock %}
+</title>
+
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ["Inter", "sans-serif"],
+        },
+
+        animation: {
+          float: "float 6s ease-in-out infinite",
+          "pulse-slow": "pulse 3s ease-in-out infinite",
+        },
+
+        keyframes: {
+          float: {
+            "0%, 100%": {
+              transform: "translateY(0px)",
+            },
+            "50%": {
+              transform: "translateY(-12px)",
+            },
+          },
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Inter", sans-serif;
+    background: #020617;
+    margin: 0;
+    padding: 0;
+  }
+
+  ::selection {
+    background: #6366f1;
+    color: white;
+  }
+
+  .glass {
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .gradient-text {
+    background: linear-gradient(
+      90deg,
+      #818cf8,
+      #c084fc,
+      #22d3ee
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+
+    background: linear-gradient(
+      135deg,
+      rgba(99, 102, 241, 0.7),
+      rgba(168, 85, 247, 0.3),
+      rgba(34, 211, 238, 0.5)
+    );
+
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    pointer-events: none;
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(
+        rgba(255, 255, 255, 0.025) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.025) 1px,
+        transparent 1px
+      );
+
+    background-size: 40px 40px;
+  }
+
+  .glow {
+    box-shadow:
+      0 0 40px rgba(99, 102, 241, 0.15),
+      0 0 80px rgba(168, 85, 247, 0.08);
+  }
+
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 50%;
+    bottom: -7px;
+    transform: translateX(-50%);
+    background: #818cf8;
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 70%;
+  }
+
+  .project-card {
+    transition:
+      transform 0.35s ease,
+      border-color 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(129, 140, 248, 0.4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  }
+
+  .mobile-menu {
+    transition: all 0.3s ease;
+  }
+</style>
+
+{% block extra_css %}{% endblock %}
+```
+
+  </head>
+
+  <body class="bg-slate-950 text-white antialiased">
+
+```
+<!-- ================= NAVIGATION ================= -->
+<header class="fixed top-0 left-0 right-0 z-50">
+
+  <nav class="glass border-x-0 border-t-0">
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+      <!-- NAVBAR -->
+      <div class="h-20 flex items-center justify-between">
+
+        <!-- LOGO -->
+        <a
+          href="{% url 'home' %}"
+          class="flex items-center gap-3"
+        >
+
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-black text-lg shadow-lg shadow-indigo-500/20"
+          >
+            AO
+          </div>
+
+          <div class="hidden sm:block">
+            <p class="font-bold tracking-tight">
+              Adewale Oluwatoba
+            </p>
+
+            <p class="text-xs text-slate-400">
+              Web Developer
+            </p>
+          </div>
+
+        </a>
+
+
+        <!-- DESKTOP NAVIGATION -->
+        <div class="hidden md:flex items-center gap-8">
+
+          <!-- HOME -->
+          <a
+            href="{% url 'home' %}"
+            class="nav-link text-sm text-slate-300 hover:text-white transition"
+          >
+            Home
+          </a>
+
+          <!-- ABOUT -->
+          <a
+            href="{% url 'about' %}"
+            class="nav-link text-sm text-slate-300 hover:text-white transition"
+          >
+            About
+          </a>
+
+          <!-- SERVICES -->
+          <a
+            href="{% url 'services' %}"
+            class="nav-link text-sm text-slate-300 hover:text-white transition"
+          >
+            Services
+          </a>
+
+          <!-- PROJECTS -->
+          <a
+            href="{% url 'projects' %}"
+            class="nav-link text-sm text-slate-300 hover:text-white transition"
+          >
+            Projects
+          </a>
+
+          <!-- CONTACT -->
+          <a
+            href="https://wa.me/2349015239095"
+            class="px-5 py-2.5 rounded-full bg-white text-slate-950 text-sm font-semibold hover:bg-slate-200 transition"
+          >
+            Let's Talk
+          </a>
+
+        </div>
+
+
+        <!-- MOBILE MENU BUTTON -->
+        <button
+          id="menuButton"
+          type="button"
+          class="md:hidden w-10 h-10 rounded-xl border border-white/10 bg-white/5 flex items-center justify-center text-white hover:bg-white/10 transition"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+        >
+
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+
+          </svg>
+
+        </button>
+
+      </div>
+
+
+      <!-- MOBILE MENU -->
+      <div
+        id="mobileMenu"
+        class="hidden md:hidden pb-6"
+      >
+
+        <div class="glass rounded-2xl p-4 space-y-2">
+
+          <!-- HOME -->
+          <a
+            href="{% url 'home' %}"
+            class="block px-4 py-3 rounded-xl text-slate-300 hover:bg-white/5 hover:text-white transition"
+          >
+            Home
+          </a>
+
+          <!-- ABOUT -->
+          <a
+            href="{% url 'about' %}"
+            class="block px-4 py-3 rounded-xl text-slate-300 hover:bg-white/5 hover:text-white transition"
+          >
+            About
+          </a>
+
+          <!-- SERVICES -->
+          <a
+            href="{% url 'services' %}"
+            class="block px-4 py-3 rounded-xl text-slate-300 hover:bg-white/5 hover:text-white transition"
+          >
+            Services
+          </a>
+
+          <!-- PROJECTS -->
+          <a
+            href="{% url 'projects' %}"
+            class="block px-4 py-3 rounded-xl text-slate-300 hover:bg-white/5 hover:text-white transition"
+          >
+            Projects
+          </a>
+
+          <!-- CONTACT -->
+          <a
+            href="https://wa.me/2349015239095"
+            class="block px-4 py-3 rounded-xl bg-white text-slate-950 font-semibold hover:bg-slate-200 transition"
+          >
+            Let's Talk
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+</header>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main>
+  {% block content %}
+  {% endblock %}
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="border-t border-white/10">
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-10">
+
+    <div
+      class="flex flex-col md:flex-row items-center justify-between gap-5"
+    >
+
+      <div>
+
+        <p class="font-semibold">
+          Adewale Oluwatoba
+        </p>
+
+        <p class="text-sm text-slate-500 mt-1">
+          Building digital experiences that make businesses stand out.
+        </p>
+
+      </div>
+
+      <div class="text-sm text-slate-500">
+        © {% now "Y" %} Adewale Oluwatoba. All rights reserved.
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- ================= MOBILE MENU JAVASCRIPT ================= -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    if (!menuButton || !mobileMenu) {
+      return;
+    }
+
+    menuButton.addEventListener("click", function () {
+
+      const isOpen =
+        !mobileMenu.classList.contains("hidden");
+
+      if (isOpen) {
+
+        mobileMenu.classList.add("hidden");
+
+        menuButton.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+      } else {
+
+        mobileMenu.classList.remove("hidden");
+
+        menuButton.setAttribute(
+          "aria-expanded",
+          "true"
+        );
+
+      }
+
+    });
+
+
+    // Close mobile menu after clicking a link
+    const mobileLinks =
+      mobileMenu.querySelectorAll("a");
+
+    mobileLinks.forEach(function (link) {
+
+      link.addEventListener("click", function () {
+
+        mobileMenu.classList.add("hidden");
+
+        menuButton.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+      });
+
+    });
+
+  });
+</script>
+
+
+{% block extra_js %}
+{% endblock %}
+```
+
+  </body>
+</html>
