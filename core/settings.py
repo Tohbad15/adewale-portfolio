@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -128,3 +129,31 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Adewale Admin",
+    "site_header": "Adewale Portfolio",
+    "site_brand": "Adewale",
+    "welcome_sign": "Welcome to Your Admin Dashboard",
+    "copyright": "Adewale Oluwatoba",
+
+    "show_sidebar": True,
+    "navigation_expanded": True,
+
+    "order_with_respect_to": [
+        "pages",
+        "project",
+        "auth",
+    ],
+
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "project": "fas fa-folder-open",
+        "pages": "fas fa-file-alt",
+    },
+
+    "show_ui_builder": True,
+}
